@@ -42,4 +42,24 @@ namespace UtmVitalik.Controllers
             return View();
         }
     }
+
+    public class GameController : Controller
+    {
+        private ApplicationContext db;
+
+        public GameController()
+        {
+            db = new ApplicationContext();
+        }
+        public ActionResult Index(string searchTerm)
+        {
+            var games = string.IsNullOrWhiteSpace(searchTerm)
+                ? db.Games.ToList()
+                : db.Games
+                    .Where(g => g.Name.Contains(searchTerm))
+                    .ToList();
+            ViewBag.SearchQuery = searchTerm;
+            return View(games);
+        }
+    }
 }
