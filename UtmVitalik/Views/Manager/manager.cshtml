@@ -1,0 +1,25 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Store</title>
+    <link rel="stylesheet" href="../../Vendor/manager.css">
+</head>
+<body>
+<div class="container">
+    <img src="../../Content/images/logo.png" style="margin-left: 37%">
+    <form id="gameForm" style="margin-top: 5%">
+        <input type="text" id="gameName" placeholder="Game Name" required>
+        <input type="text" id="gamePrice" placeholder="Price" required>
+        <button type="submit">Add Game</button>
+    </form>
+    <ul id="gameList" style="color: white"></ul>
+</div>
+<script src="../../Vendor/Scripts/manager.js"></script>
+</body>
+</html>
