@@ -2,10 +2,9 @@
 
 namespace UtmVitalik.Controllers
 {
-
-    public class AccountController : Controller
+    public class AdministrationController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Administration()
         {
             return View();
         }

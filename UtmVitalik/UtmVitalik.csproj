@@ -125,6 +125,7 @@
     <Compile Include="BusinessLogic\DB\ApplicationContext.cs" />
     <Compile Include="BusinessLogic\DB\ApplicationUser.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Administration.cs" />
     <Compile Include="Controllers\BrowseController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\DetailsController.cs" />
@@ -286,6 +287,7 @@
     <Content Include="Vendor\Scripts\register.js" />
     <Content Include="Vendor\Scripts\tabs.js" />
     <Content Include="Vendor\stun seed.css" />
+    <Content Include="Views\Administration\administration.cshtml" />
     <Content Include="Views\Browse\browse.cshtml" />
     <Content Include="Views\Home\index.cshtml" />
     <Content Include="Views\Manager\Manager.cshtml" />

@@ -13,14 +13,14 @@ namespace UtmVitalik.Controllers
         private ApplicationContext db = new ApplicationContext();
 
         [HttpGet]
-        [Route("login")]
+        [Route("Login")]
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("login")]
+        [Route("Login")]
         public ActionResult Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
@@ -31,23 +31,22 @@ namespace UtmVitalik.Controllers
                 if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(user.Email, false);
-                    return RedirectToAction("userProfile", "Profile", new {userName = user.Name});
+                    Session["UserName"] = user.Name;
+                    return RedirectToAction("userProfile", "Profile", new { userName = user.Name });
                 }
 
                 ModelState.AddModelError("", "Неудачная попытка входа");
-
             }
             return View(model);
         }
-    
 
-    public string HashPassword(string password)
+        public string HashPassword(string password)
+        {
+            using (var sha256 = SHA256.Create())
             {
-                using (var sha256 = SHA256.Create())
-                {
-                    var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                    return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
-                }
+                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
             }
         }
     }
+}

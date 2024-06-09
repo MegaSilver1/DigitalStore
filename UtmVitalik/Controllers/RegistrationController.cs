@@ -25,10 +25,13 @@ namespace UtmVitalik.Controllers
             if (ModelState.IsValid && model != null)
             {
                 var actor = new Actor
+         
                 {
                     Name = model.Name,
                     Email = model.Email,
                     Password = HashPassword(model.Password)
+                   
+
                 };
                 db.Actor.Add(actor);
                 db.SaveChanges();

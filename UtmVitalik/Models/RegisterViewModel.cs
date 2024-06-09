@@ -4,6 +4,7 @@ namespace UtmVitalik.BusinessLogic.DB
 {
     public class RegisterViewModel
     {
+        public string defRole = "user";
         [Required]
         [Display(Name = "Имя пользователя")]
         public string Name { get; set; }
