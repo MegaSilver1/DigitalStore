@@ -131,7 +131,6 @@
     <Compile Include="Controllers\DetailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
@@ -290,7 +289,6 @@
     <Content Include="Views\Administration\administration.cshtml" />
     <Content Include="Views\Browse\browse.cshtml" />
     <Content Include="Views\Home\index.cshtml" />
-    <Content Include="Views\Manager\Manager.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
