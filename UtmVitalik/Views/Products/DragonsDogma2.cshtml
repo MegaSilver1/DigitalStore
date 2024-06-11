@@ -23,7 +23,7 @@
         <div class="product-details">
             <h1>DRAGON'S DOGMA 2</h1>
             <p class="price">Цена: 980 MDL</p>
-            <button class="add-to-cart-button">Добавить в корзину</button>
+            <button class="add-to-cart-button" onclick="addToCart(2)">Добавить в корзину</button>
             <p class="short-description">Восставший, отправляйся в великое приключение!</p>
             <p class="short-description">
                 Dragon's Dogma — это однопользовательская ролевая игра, 
@@ -100,6 +100,35 @@
             <p>Отзыв 3...</p>
         </div>
     </div>
-    <script src="../../Vendor/Scripts/product.js"></script>
+<script src="../../Vendor/Scripts/product.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Функция для добавления товара в корзину
+    function addToCart(productId) {
+        $.ajax({
+            url: '/Cart/AddToCart', // Путь к методу контроллера для добавления товара в корзину
+            type: 'POST',
+            data: { productId: productId }, // Параметры запроса (id товара)
+            success: function (response) {
+                // Обработка успешного добавления товара в корзину
+                alert('Товар добавлен в корзину!');
+                // Можно добавить дополнительную логику, например, обновление информации о корзине
+            },
+            error: function (xhr, status, error) {
+                // Обработка ошибки добавления товара в корзину
+                alert('Произошла ошибка при добавлении товара в корзину.');
+            }
+        });
+    }
+
+    // Пример вызова функции addToCart
+    // Замените productId на фактический идентификатор товара
+    $(document).ready(function () {
+        $('#add-to-cart-button').click(function () {
+            var productId = 123; // Пример идентификатора товара
+            addToCart(productId);
+        });
+    });
+</script>
 </body>
 </html>

@@ -29,7 +29,8 @@ namespace UtmVitalik.Controllers
                 {
                     Name = model.Name,
                     Email = model.Email,
-                    Password = HashPassword(model.Password)
+                    Password = HashPassword(model.Password),
+                    Role = "User"
                    
 
                 };

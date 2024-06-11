@@ -120,11 +120,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\CustomRoleProvider.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BusinessLogic\DB\ApplicationContext.cs" />
     <Compile Include="BusinessLogic\DB\ApplicationUser.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Administration.cs" />
     <Compile Include="Controllers\BrowseController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -139,6 +139,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Actor.cs" />
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />

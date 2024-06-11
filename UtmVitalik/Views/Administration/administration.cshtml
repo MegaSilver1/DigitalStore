@@ -9,6 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management</title>
     <link rel="stylesheet" href="../../Vendor/manager.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+            .container {
+                margin-left: 15%; /* Сдвиг контейнера на 10% вправо */
+            }
+        </style>
 </head>
 <body>
 <div class="container">
@@ -16,18 +22,93 @@
     <h1>User Management</h1>
     <table id="userTable" style="width: 100%; margin-top: 5%">
         <thead>
-            <tr>
-                <th>User ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
         </thead>
         <tbody>
-            <!-- User rows will be dynamically populated here -->
         </tbody>
     </table>
 </div>
+
+<script>
+$(document).ready(function() {
+    loadUsers();
+
+    function loadUsers() {
+        $.ajax({
+            url: '@Url.Action("GetUsers", "Administration")',
+            type: 'GET',
+            success: function(data) {
+                var rows = '';
+                $.each(data, function(index, user) {
+                    rows += '<tr>';
+                    rows += '<td>' + user.Id + '</td>';
+                    rows += '<td>' + user.Name + '</td>';
+                    rows += '<td>' + user.Email + '</td>';
+                    rows += '<td>' + user.Role + '</td>';
+                    rows += '<td><button onclick="editUser(\'' + user.Id + '\')">Edit</button><button onclick="deleteUser(\'' + user.Id + '\')">Delete</button></td>';
+                    rows += '</tr>';
+                });
+                $('#userTable tbody').html(rows);
+            }
+        });
+    }
+
+   window.editUser = function(id) {
+       var newRole = prompt("Enter new role:");
+       var newPassword = prompt("Enter new password:");
+       if (newRole && newPassword) {
+           $.ajax({
+               url: '@Url.Action("UpdateUser", "Administration")',
+               type: 'POST',
+               data: {
+                   id: id,
+                   role: newRole,
+                   password: newPassword
+               },
+               success: function(response) {
+                   if (response.success) {
+                       alert("User updated successfully.");
+                       loadUsers();
+                   } else {
+                       alert("Error updating user: " + response.message);
+                   }
+               },
+               error: function(jqXHR, textStatus, errorThrown) {
+                   alert("AJAX error: " + textStatus + ' : ' + errorThrown);
+                   console.log(jqXHR.responseText);
+               }
+           });
+       }
+   };
+   
+   window.deleteUser = function(id) {
+       if (confirm("Are you sure you want to delete this user?")) {
+           $.ajax({
+               url: '@Url.Action("DeleteUser", "Administration")',
+               type: 'POST',
+               data: { id: id },
+               success: function(response) {
+                   if (response.success) {
+                       alert("User deleted successfully.");
+                       loadUsers();
+                   } else {
+                       alert("Error deleting user: " + response.message);
+                   }
+               },
+               error: function(jqXHR, textStatus, errorThrown) {
+                   alert("AJAX error: " + textStatus + ' : ' + errorThrown);
+                   console.log(jqXHR.responseText);
+               }
+           });
+       }
+   };
+});
+</script>
 </body>
 </html>

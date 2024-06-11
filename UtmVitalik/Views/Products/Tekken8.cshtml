@@ -23,7 +23,7 @@ Layout = null;
     <div class="product-details">
         <h1>TEKKEN 8 DELUXE EDITION</h1>
         <p class="price">Цена: 980 MDL</p>
-        <button class="add-to-cart-button">Добавить в корзину</button>
+        <button class="add-to-cart-button" onclick="addToCart(1)">Добавить в корзину</button>
         <p class="short-description">ВСТРЕЧАЙТЕ TEKKEN 8 — СЛЕДУЮЩУЮ ГЛАВУ ЛЕГЕНДАРНОЙ ФРАНШИЗЫ ФАЙТИНГОВ.</p>
         <p class="short-description">Характерные для серии TEKKEN напряжённые битвы стали ещё лучше благодаря
             реалистичной графике, выжимающей максимум из современного оборудования, и
@@ -101,5 +101,35 @@ Layout = null;
 <script src="../../Vendor/Scripts/tabs.js"></script>
 <script src="../../Vendor/Scripts/popup.js"></script>
 <script src="../../Vendor/Scripts/custom.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Функция для добавления товара в корзину
+    function addToCart(productId) {
+        $.ajax({
+            url: '@Url.Action("AddToCart","Cart")', // Путь к методу контроллера для добавления товара в корзину
+            type: 'POST',
+            data: { productId: productId }, // Параметры запроса (id товара)
+            success: function (response) {
+                // Обработка успешного добавления товара в корзину
+                alert('Товар добавлен в корзину!');
+                // Можно добавить дополнительную логику, например, обновление информации о корзине
+            },
+            error: function (xhr, status, error) {
+                // Обработка ошибки добавления товара в корзину
+                alert('Произошла ошибка при добавлении товара в корзину.');
+            }
+        });
+    }
+
+    // Пример вызова функции addToCart
+    // Замените productId на фактический идентификатор товара
+    $(document).ready(function () {
+        $('#add-to-cart-button').click(function () {
+            var productId = 1; // Пример идентификатора товара
+            addToCart(productId);
+        });
+    });
+</script>
 </body>
 </html>
